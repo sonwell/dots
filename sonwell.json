@@ -1,0 +1,38 @@
+{
+    "scheme": {
+        "background": "#050505",
+        "black": "#303030",
+        "blue": "#3986A3",
+        "brightBlack": "#6C6C6C",
+        "brightBlue": "#39A1DF",
+        "brightCyan": "#3CC4B1",
+        "brightGreen": "#70C87D",
+        "brightPurple": "#A561AE",
+        "brightRed": "#C34346",
+        "brightWhite": "#DEE5D7",
+        "brightYellow": "#D6CF7E",
+        "cursorColor": "#646564",
+        "cyan": "#4E7D78",
+        "foreground": "#C7CBC6",
+        "green": "#5AA261",
+        "name": "sonwell",
+        "purple": "#714E76",
+        "red": "#802426",
+        "selectionBackground": "#332466",
+        "white": "#B9C1B9",
+        "yellow": "#B1813A"
+    },
+    "profile": {
+        "colorScheme": "sonwell",
+        "cursorShape": "filledBox",
+        "font": 
+        {
+            "face": "FiraCode NF",
+            "size": 11
+        },
+        "hidden": false,
+        "name": "Debian",
+        "source": "Windows.Terminal.Wsl",
+        "startingDirectory": "$HOME"
+    }
+}

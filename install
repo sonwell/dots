@@ -1,0 +1,56 @@
+#!/bin/bash
+
+sudo apt-get update
+sudo apt-get install zsh curl wget git clang clangd make openssh-client
+# Python dependencies
+sudo apt-get install build-essential gdb lcov pkg-config \
+      libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
+      libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev \
+      lzma lzma-dev tk-dev uuid-dev zlib1g-dev
+
+cd $HOME
+git clone https://github.com/sonwell/dots.git dots
+
+mkdir -p $HOME/.local/share
+mkdir -p $HOME/.local/bin
+mkdir -p $HOME/.config
+
+# Install oh-my-zsh
+curl -s -o install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+ZSH=$HOME/.local/share/oh-my-zsh sh install.sh
+cp oh-my-zsh/custom/themes/sonwell.zsh-theme $HOME/.local/share/oh-my-zsh/custom/themes/
+
+# Set up zsh
+cp zshrc $HOME/.zshrc
+chsh -s /bin/zsh
+
+# Install asdf
+git clone https://github.com/asdf-vm/asdf.git $HOME/.local/share/asdf --branch v0.9.0
+source $HOME/.local/share/asdf/asdf.sh  # so we can now use asdf
+
+# Install neovim
+asdf plugin add neovim
+asdf install neovim latest
+asdf global neovim latest
+cp -r nvim $HOME/.config/
+nvim --headless +PlugInstall +qa
+cp airline/themes/sonwell.vim $HOME/.local/share/nvim/plugged/vim-airline-themes/autoload/airline/themes/
+
+# Install direnv
+asdf plugin add direnv
+asdf install direnv latest
+asdf global direnv latest
+mkdir -p $HOME/.config/direnv
+cp direnv/direnvrc $HOME/.config/direnv
+
+# Install Python
+asdf plugin add python
+asdf install python latest
+asdf global python latest
+pip install --upgrade pip
+pip install --user git+https://github.com/cpbotha/xdg-open-wsl.git
+
+ssh-keygen
+
+echo "Modify the relevent settings to match those below (Windows Terminal):"
+cat sonwell.json
